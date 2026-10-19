@@ -26,7 +26,7 @@ const CONFIG = {
       contacts: ["9847806401", "9747416187"]
     },
     hashtag: "#SHIGOTHERNIK",
-    compliments: "Hi-Style Tailoring, Prabha Fashions & Googie 🐾"
+    compliments: "Ethereal stays & Googie 🐾"
   },
   event: {
     title: "Wedding of Shima & Nikhil",
