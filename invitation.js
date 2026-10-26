@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCalendarDownload();
   initLightbox();
   initBackToTop(lenis);
+  initHeroScrollCue();
 
   if (sessionStorage.getItem("playWeddingMusic") === "true") {
     sessionStorage.removeItem("playWeddingMusic");
@@ -116,6 +117,33 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/* ===========================================================================
+   HERO SCROLL CUE
+   =========================================================================== */
+function initHeroScrollCue() {
+  const cue = document.querySelector(".hero-scroll-cue");
+  if (!cue) return;
+
+  let dismissed = false;
+  const dismiss = () => {
+    if (dismissed) return;
+    dismissed = true;
+    cue.classList.add("is-hidden");
+    window.removeEventListener("wheel", dismiss);
+    window.removeEventListener("touchmove", dismiss);
+    window.removeEventListener("keydown", dismissOnScrollKey);
+    window.removeEventListener("scroll", dismiss);
+  };
+  const dismissOnScrollKey = (event) => {
+    if (["ArrowDown", "PageDown", "End", " "].includes(event.key)) dismiss();
+  };
+
+  window.addEventListener("wheel", dismiss, { passive: true, once: true });
+  window.addEventListener("touchmove", dismiss, { passive: true, once: true });
+  window.addEventListener("keydown", dismissOnScrollKey);
+  window.addEventListener("scroll", dismiss, { passive: true, once: true });
+}
 
 /* ==========================================================================
    CONFIG DATA INJECTION
